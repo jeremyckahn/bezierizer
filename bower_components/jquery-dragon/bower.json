@@ -1,8 +1,0 @@
-{
-  "name": "jquery-dragon",
-  "version": "0.1.5",
-  "main": "./src/jquery.dragon.js",
-  "dependencies": {
-    "jquery": "~1.9.1"
-  }
-}
