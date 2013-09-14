@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ROAR!</title>
+  <script src="bower_components/jquery/jquery.js"></script>
+  <script src="src/jquery.dragon.js"></script>
+  <script src="src/jquery.dragon-slider.js"></script>
+  <link rel="stylesheet" href="src/css/jquery.dragon-slider.css" type="text/css" />
+  <style>
+    .dragon {
+      float: left;
+      height: 100px;
+      width: 100px;
+    }
+
+    #dragon-basic {
+      background: #f00;
+    }
+
+    #dragon-x {
+      background: #00f;
+    }
+
+    #dragon-y {
+      background: #0f0;
+    }
+
+    #dragon-container {
+      border: dotted 1px #000;
+      height: 300px;
+      position: absolute;
+      top: 120px;
+      width: 300px;
+    }
+
+    #dragon-slider {
+      position: absolute;
+      top: 450px;
+    }
+
+    #dragon-contained {
+      background: #0ff;
+    }
+
+    #dragon-handle {
+      background: #ff8;
+    }
+
+    #dragon-event {
+      background: #bada55;
+    }
+  </style>
+</head>
+<body>
+  <div id="dragon-container">
+    <div id="dragon-contained" class="dragon">
+      <p>Drag me within my bounds!</p>
+    </div>
+  </div>
+  <div id="dragon-basic" class="dragon">
+    <p>Drag me anywhere!</p>
+  </div>
+  <div id="dragon-x" class="dragon">
+    <p>Drag me left and right!</p>
+  </div>
+  <div id="dragon-y" class="dragon">
+    <p>Drag me up and down!</p>
+  </div>
+  <div id="dragon-handle" class="dragon">
+    <p>Drag me by my text!</p>
+  </div>
+  <div id="dragon-event" class="dragon">
+    <p>I log things as you drag me!</p>
+  </div>
+  <div id="dragon-slider"></div>
+  <script>
+    $('#dragon-event').dragon({
+      'dragStart': function () {
+        console.log('I am starting to drag!');
+      }
+      ,'drag': function () {
+        console.log('I am currently dragging!');
+      }
+      ,'dragEnd': function () {
+        console.log('I stopped dragging!');
+      }
+    });
+
+    $('#dragon-handle').dragon({
+      'handle': 'p'
+    });
+
+    $('#dragon-y').dragon({
+      'axis': $.fn.dragon.AXIS_Y
+    });
+
+    $('#dragon-x').dragon({
+      'axis': $.fn.dragon.AXIS_X
+    });
+
+    $('#dragon-basic').dragon();
+
+    $('#dragon-contained').dragon({
+      'within': $('#dragon-container')
+    });
+
+    $('#dragon-slider').dragonSlider({
+      'drag': function (val) {
+        console.log(val);
+      }
+    });
+
+  </script>
+</body>
+</html>
