@@ -1,4 +1,8 @@
 {
+  "globals": {
+    "$": true,
+    "HTML_TEMPLATE": true
+  },
   "asi": false,
   "boss": true,
   "browser": true,

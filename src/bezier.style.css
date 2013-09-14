@@ -1,0 +1,9 @@
+.bezierizer-container {
+
+}
+
+  .bezierizer-container canvas {
+    border: solid 1px #000;
+    height: 290px;
+    width: 290px;
+  }
