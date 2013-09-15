@@ -78,17 +78,17 @@ Bezierizer.prototype.redraw = function () {
   var handlePositions = this.getHandlePositions();
   var height = this._$canvas[0].height;
   var width = this._$canvas[0].width;
-  var x1  = handlePositions.x1 * width;
-  var y1  = handlePositions.y1 * height;
-  var x2  = handlePositions.x2 * width;
-  var y2  = handlePositions.y2 * height;
+  var x1 = handlePositions.x1 * width;
+  var y1 = handlePositions.y1 * height;
+  var x2 = handlePositions.x2 * width;
+  var y2 = handlePositions.y2 * height;
 
   var ctx = this._ctx;
   ctx.clearRect(0, 0, width, height);
   ctx.beginPath();
   ctx.moveTo(x1, y1);
   ctx.lineTo(0, 0);
-  ctx.bezierCurveTo(x1, y2, x2, y2, width, height);
+  ctx.bezierCurveTo(x1, y1, x2, y2, width, height);
   ctx.lineTo(x2, y2);
   ctx.stroke();
   ctx.closePath();
