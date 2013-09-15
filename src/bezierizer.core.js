@@ -5,6 +5,13 @@ function getHandleX (bezierizer, $handle) {
 }
 
 
+function getHandleY (bezierizer, $handle) {
+  var handleY = parseInt($handle.css('top'), 10);
+  return handleY / (
+      bezierizer.$canvasContainer.height() - $handle.outerHeight(true));
+}
+
+
 function Bezierizer (container) {
   this.$el = $(container);
   this.$el.append($(HTML_TEMPLATE));
@@ -20,15 +27,23 @@ function Bezierizer (container) {
     within: this.$canvasContainer
   });
 
-  this.$canvasContainer.on('drag', '.bezierizer-handle', $.proxy(function (evt) {
-    console.log(this.getHandlePositions())
-  }, this));
+  this.initBindings();
 }
+
+
+Bezierizer.prototype.initBindings = function () {
+  this.$canvasContainer.on('drag', '.bezierizer-handle',
+      $.proxy(function (evt) {
+    //console.log(this.getHandlePositions())
+  }, this));
+};
 
 
 Bezierizer.prototype.getHandlePositions = function () {
   return {
     x1: getHandleX(this, this.$handles.eq(0))
+    ,y1: getHandleY(this, this.$handles.eq(0))
     ,x2: getHandleX(this, this.$handles.eq(1))
+    ,y2: getHandleY(this, this.$handles.eq(1))
   };
 };
