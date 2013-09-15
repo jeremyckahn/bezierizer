@@ -34,7 +34,7 @@ function Bezierizer (container) {
 Bezierizer.prototype.initBindings = function () {
   this.$canvasContainer.on('drag', '.bezierizer-handle',
       $.proxy(function (evt) {
-    //console.log(this.getHandlePositions())
+    this.$el.trigger('change');
   }, this));
 };
 

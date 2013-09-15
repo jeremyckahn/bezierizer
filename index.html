@@ -13,6 +13,10 @@
   <script>
     var bezierizerTestEl = document.getElementById('bezierizer-test');
     var bezierizer = new Bezierizer(bezierizerTestEl);
+
+    bezierizer.$el.on('change', function () {
+      console.log(bezierizer.getHandlePositions());
+    });
   </script>
 </body>
 </html>
