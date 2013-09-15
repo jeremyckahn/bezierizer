@@ -1,11 +1,11 @@
 .bezierizer-canvas-container {
+  border: solid 1px #000;
   height: 292px;
   position: relative;
   width: 292px;
 }
 
   .bezierizer-canvas-container canvas {
-    border: solid 1px #000;
     height: 290px;
     width: 290px;
     z-index: -1; /* May not be necessary */
