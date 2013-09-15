@@ -1,14 +1,13 @@
 .bezierizer-canvas-container {
   border: solid 1px #000;
-  height: 292px;
+  height: 290px;
   position: relative;
-  width: 292px;
+  width: 290px;
 }
 
   .bezierizer-canvas-container canvas {
     height: 290px;
     width: 290px;
-    z-index: -1; /* May not be necessary */
   }
 
   .bezierizer-canvas-container .bezierizer-handle {

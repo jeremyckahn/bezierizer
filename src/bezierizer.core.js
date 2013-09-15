@@ -36,6 +36,9 @@ function Bezierizer (container) {
   this._$handles = this._$canvasContainer.find('.bezierizer-handle');
 
   this._ctx = this._$canvas[0].getContext('2d');
+  var ctx = this._ctx;
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = '#f0f';
 
   this._$canvas[0].height = this._$canvas.height();
   this._$canvas[0].width = this._$canvas.width();
@@ -50,6 +53,7 @@ function Bezierizer (container) {
 Bezierizer.prototype.initBindings = function () {
   this._$canvasContainer.on(
       'drag', '.bezierizer-handle', $.proxy(function (evt) {
+    this.redraw();
     this.$el.trigger('change');
   }, this));
 };
@@ -71,5 +75,21 @@ Bezierizer.prototype.getHandlePositions = function () {
 
 
 Bezierizer.prototype.redraw = function () {
+  var handlePositions = this.getHandlePositions();
+  var height = this._$canvas[0].height;
+  var width = this._$canvas[0].width;
+  var x1  = handlePositions.x1 * width;
+  var y1  = handlePositions.y1 * height;
+  var x2  = handlePositions.x2 * width;
+  var y2  = handlePositions.y2 * height;
 
+  var ctx = this._ctx;
+  ctx.clearRect(0, 0, width, height);
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(0, 0);
+  ctx.bezierCurveTo(x1, y2, x2, y2, width, height);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+  ctx.closePath();
 };
