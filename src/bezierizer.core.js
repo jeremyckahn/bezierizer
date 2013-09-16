@@ -104,10 +104,14 @@ Bezierizer.prototype.getHandlePositions = function () {
 Bezierizer.prototype.setHandlePositions = function (points) {
   $.extend(this._points, points);
 
-  this._$handles.eq(0).css('left', this._points.x1);
-  this._$handles.eq(0).css('top',  this._points.y1);
-  this._$handles.eq(1).css('left', this._points.x2);
-  this._$handles.eq(1).css('top',  this._points.y2);
+  this._$handles.eq(0).css({
+    left: this._points.x1
+    ,top: this._points.y1
+  });
+  this._$handles.eq(1).css({
+    left: this._points.x2
+    ,top: this._points.y2
+  });
 
   this.redraw();
 };
