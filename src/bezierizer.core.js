@@ -129,12 +129,31 @@ Bezierizer.prototype.redraw = function () {
   var y2 = points.y2 * height;
 
   var ctx = this._ctx;
+  var handleStrokeColor = '#888';
+  var handleLineWidth = 2;
   ctx.clearRect(0, 0, width, height);
+
   ctx.beginPath();
+  ctx.lineWidth = handleLineWidth;
   ctx.moveTo(x1, y1);
   ctx.lineTo(0, 0);
+  ctx.strokeStyle = handleStrokeColor;
+  ctx.stroke();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.lineWidth = 4;
+  ctx.moveTo(0, 0);
   ctx.bezierCurveTo(x1, y1, x2, y2, width, height);
+  ctx.strokeStyle = '#ccc';
+  ctx.stroke();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.lineWidth = handleLineWidth;
+  ctx.moveTo(width, height);
   ctx.lineTo(x2, y2);
+  ctx.strokeStyle = handleStrokeColor;
   ctx.stroke();
   ctx.closePath();
 };

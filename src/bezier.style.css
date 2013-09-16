@@ -1,32 +1,32 @@
 .bezierizer-canvas-container {
-  border: solid 1px #000;
-  height: 290px;
+  height: 270px;
   position: relative;
-  width: 290px;
+  width: 270px;
 }
 
   .bezierizer-canvas-container canvas {
-    height: 290px;
-    width: 290px;
+    background: #555;
+    height: 270px;
+    width: 270px;
   }
 
   .bezierizer-canvas-container .bezierizer-handle-container {
-    height: 310px;
+    height: 290px;
     left: -10px;
     position: absolute;
     top: -10px;
-    width: 310px;
+    width: 290px;
   }
 
     .bezierizer-canvas-container .bezierizer-handle {
       background: #bbb;
-      border-radius: 10px;
-      border: solid 1px #333;
-      height: 20px;
+      border-radius: 12px;
+      border: solid 4px #666;
+      height: 24px;
       left: 0;
       position: absolute;
       top: 0;
-      width: 20px;
+      width: 24px;
     }
 
     .bezierizer-canvas-container .bezierizer-handle:focus {
