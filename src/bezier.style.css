@@ -19,9 +19,9 @@
   }
 
     .bezierizer-canvas-container .bezierizer-handle {
-      background: #bbb;
+      background: #999;
       border-radius: 12px;
-      border: solid 4px #666;
+      border: solid 4px #333;
       height: 24px;
       left: 0;
       position: absolute;

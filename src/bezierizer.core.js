@@ -8,7 +8,7 @@
  */
 function getHandleX ($handleContainer, $handle) {
   var handleX = parseInt($handle.css('left'), 10);
-  return handleX / ($handleContainer.width() - $handle.outerWidth(true));
+  return handleX / ($handleContainer.outerWidth(true) - $handle.outerWidth(true));
 }
 
 
@@ -19,7 +19,7 @@ function getHandleX ($handleContainer, $handle) {
  */
 function getHandleY ($handleContainer, $handle) {
   var handleY = parseInt($handle.css('top'), 10);
-  return handleY / ($handleContainer.height()  - $handle.outerHeight(true));
+  return handleY / ($handleContainer.outerHeight(true)  - $handle.outerHeight(true));
 }
 
 
@@ -46,21 +46,16 @@ function Bezierizer (container) {
   this._$handles.dragon({
     within: this._$handleContainer
   });
-  var handleStartingTop = (this._$handleContainer.outerHeight(true) * 0.5)
-      - (this._$handles.outerHeight(true) / 2);
-  this._$handles.eq(0).css({
-    left: 0
-    ,top: handleStartingTop
-  });
-  this._$handles.eq(1).css({
-    left: this._$handleContainer.outerWidth(true)
-        - this._$handles.outerWidth(true)
-    ,top: handleStartingTop
+
+  this._points = {};
+  this.setHandlePositions({
+     x1: 0.25
+    ,y1: 0.5
+    ,x2: 0.75
+    ,y2: 0.5
   });
 
   this._initBindings();
-  this._updateInternalStateFromDOM();
-  this.redraw();
 }
 
 
@@ -105,14 +100,18 @@ Bezierizer.prototype.getHandlePositions = function () {
  */
 Bezierizer.prototype.setHandlePositions = function (points) {
   $.extend(this._points, points);
+  var handleContainerOuterHeight = this._$handleContainer.outerHeight(true);
+  var handleContainerOuterWidth = this._$handleContainer.outerWidth(true);
+  var handleOuterWidth = this._$handles.outerWidth(true);
+  var handleOuterHeight = this._$handles.outerHeight(true);
 
   this._$handles.eq(0).css({
-    left: this._points.x1
-    ,top: this._points.y1
+    left: this._points.x1 * (handleContainerOuterWidth - handleOuterWidth)
+    ,top: this._points.y1 * (handleContainerOuterHeight - handleOuterHeight)
   });
   this._$handles.eq(1).css({
-    left: this._points.x2
-    ,top: this._points.y2
+    left: this._points.x2 * (handleContainerOuterWidth - handleOuterWidth)
+    ,top: this._points.y2 * (handleContainerOuterHeight - handleOuterHeight)
   });
 
   this.redraw();
