@@ -10,18 +10,26 @@
     width: 290px;
   }
 
-  .bezierizer-canvas-container .bezierizer-handle {
-    background: #bbb;
-    border-radius: 10px;
-    border: solid 1px #333;
-    height: 20px;
-    left: 0;
-    margin: -10px 0 0 -10px;
+  .bezierizer-canvas-container .bezierizer-handle-container {
+    height: 310px;
+    left: -10px;
     position: absolute;
-    top: 0;
-    width: 20px;
+    top: -10px;
+    width: 310px;
   }
 
-  .bezierizer-canvas-container .bezierizer-handle:focus {
-    outline: none;
-  }
+    .bezierizer-canvas-container .bezierizer-handle {
+      background: #bbb;
+      border-radius: 10px;
+      border: solid 1px #333;
+      height: 20px;
+      left: 0;
+      margin: -10px 0 0 -10px;
+      position: absolute;
+      top: 0;
+      width: 20px;
+    }
+
+    .bezierizer-canvas-container .bezierizer-handle:focus {
+      outline: none;
+    }

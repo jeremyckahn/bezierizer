@@ -2,24 +2,24 @@
 //
 
 /*!
- * @param {jQuery} $canvasContainer The element that contains the Bezierizer
+ * @param {jQuery} $handleContainer The element that contains the Bezierizer
  * DOM elements.
  * @param {jQuery} $handle The handle to compute X for.
  */
-function getHandleX ($canvasContainer, $handle) {
+function getHandleX ($handleContainer, $handle) {
   var handleX = parseInt($handle.css('left'), 10);
-  return handleX / $canvasContainer.width();
+  return handleX / $handleContainer.width();
 }
 
 
 /*!
- * @param {jQuery} $canvasContainer The element that contains the Bezierizer
+ * @param {jQuery} $handleContainer The element that contains the Bezierizer
  * DOM elements.
  * @param {jQuery} $handle The handle to compute Y for.
  */
-function getHandleY ($canvasContainer, $handle) {
+function getHandleY ($handleContainer, $handle) {
   var handleY = parseInt($handle.css('top'), 10);
-  return handleY / $canvasContainer.height();
+  return handleY / $handleContainer.height();
 }
 
 
@@ -33,27 +33,29 @@ function Bezierizer (container) {
 
   this._$canvasContainer = this.$el.find('.bezierizer-canvas-container');
   this._$canvas = this._$canvasContainer.find('canvas');
-  this._$handles = this._$canvasContainer.find('.bezierizer-handle');
+  this._$handleContainer = this.$el.find('.bezierizer-handle-container');
+  this._$handles = this._$handleContainer.find('.bezierizer-handle');
 
-  var width = this._$canvas.width();
-  var height = this._$canvas.height();
   this._ctx = this._$canvas[0].getContext('2d');
   var ctx = this._ctx;
   ctx.lineWidth = 3;
   ctx.strokeStyle = '#f0f';
-  this._$canvas[0].height = height;
-  this._$canvas[0].width = width;
+  this._$canvas[0].height = this._$canvas.height();
+  this._$canvas[0].width = this._$canvas.width();
 
   this._$handles.dragon({
-    within: this._$canvasContainer
+    within: this._$handleContainer
   });
+  var handleContainerOuterHeight = this._$handleContainer.outerHeight(true);
+  var handleContainerOuterWidth = this._$handleContainer.outerWidth(true);
+  var handleOuterWidth = this._$handles.outerWidth(true);
   this._$handles.eq(0).css({
-    left: 0
-    ,top: height * 0.5
+    left: handleOuterWidth / 2
+    ,top: handleContainerOuterHeight * 0.5
   });
   this._$handles.eq(1).css({
-    left: width
-    ,top: height * 0.5
+    left: handleContainerOuterWidth - handleOuterWidth
+    ,top: handleContainerOuterHeight * 0.5
   });
 
   this._initBindings();
@@ -79,13 +81,13 @@ Bezierizer.prototype._initBindings = function () {
  * @private
  */
 Bezierizer.prototype._updateInternalStateFromDOM = function () {
-  var $canvasContainer = this._$canvasContainer;
+  var $handleContainer = this._$canvasContainer;
 
   this._points = {
-     x1: getHandleX($canvasContainer, this._$handles.eq(0))
-    ,y1: getHandleY($canvasContainer, this._$handles.eq(0))
-    ,x2: getHandleX($canvasContainer, this._$handles.eq(1))
-    ,y2: getHandleY($canvasContainer, this._$handles.eq(1))
+     x1: getHandleX($handleContainer, this._$handles.eq(0))
+    ,y1: getHandleY($handleContainer, this._$handles.eq(0))
+    ,x2: getHandleX($handleContainer, this._$handles.eq(1))
+    ,y2: getHandleY($handleContainer, this._$handles.eq(1))
   };
 };
 
