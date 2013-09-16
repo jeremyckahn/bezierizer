@@ -8,7 +8,7 @@
  */
 function getHandleX ($canvasContainer, $handle) {
   var handleX = parseInt($handle.css('left'), 10);
-  return handleX / ($canvasContainer.width() - $handle.outerWidth(true));
+  return handleX / $canvasContainer.width();
 }
 
 
@@ -19,7 +19,7 @@ function getHandleX ($canvasContainer, $handle) {
  */
 function getHandleY ($canvasContainer, $handle) {
   var handleY = parseInt($handle.css('top'), 10);
-  return handleY / ($canvasContainer.height() - $handle.outerHeight(true));
+  return handleY / $canvasContainer.height();
 }
 
 
