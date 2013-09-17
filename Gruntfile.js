@@ -41,7 +41,7 @@ module.exports = function(grunt) {
     jshint: {
       all_files: [
         'grunt.js',
-        'src/!(intro|outro)*.js'
+        'src/bezierizer.!(intro|outro)*.js'
       ],
       options: {
         jshintrc: '.jshintrc'

@@ -39,6 +39,7 @@ function getHandleY ($handleContainer, $handle) {
 
 
 /**
+ * Creates a Bezierizer widget and inserts it into the DOM.
  * @param {Element} container The container element to insert the Bezierizer widget into.
  * @constructor
  */
@@ -52,9 +53,6 @@ function Bezierizer (container) {
   this._$handles = this._$handleContainer.find('.bezierizer-handle');
 
   this._ctx = this._$canvas[0].getContext('2d');
-  var ctx = this._ctx;
-  ctx.lineWidth = 3;
-  ctx.strokeStyle = '#f0f';
   this._$canvas[0].height = this._$canvas.height();
   this._$canvas[0].width = this._$canvas.width();
 
@@ -81,7 +79,7 @@ Bezierizer.prototype._initBindings = function () {
   this._$canvasContainer.on(
       'drag', '.bezierizer-handle', $.proxy(function (evt) {
     this._updateInternalStateFromDOM();
-    this.redraw();
+    this._redraw();
     this.$el.trigger('change');
   }, this));
 };
@@ -103,44 +101,9 @@ Bezierizer.prototype._updateInternalStateFromDOM = function () {
 
 
 /**
- * @return {Object} Contains normalized x1, y1, x2 and y2 numbers.
+ * @private
  */
-Bezierizer.prototype.getHandlePositions = function () {
-  return $.extend({}, this._points);
-};
-
-
-/**
- * @param {Object} points An object that may contain numbers representing any or all of x1, y1, x2, and y2.
- */
-Bezierizer.prototype.setHandlePositions = function (points) {
-  $.extend(this._points, points);
-  var handleContainerOuterHeight = this._$handleContainer.outerHeight(true);
-  var handleContainerOuterWidth = this._$handleContainer.outerWidth(true);
-  var handleOuterWidth = this._$handles.outerWidth(true);
-  var handleOuterHeight = this._$handles.outerHeight(true);
-
-  // Adding 1 to each of these values seems to fix weird rounding errors that
-  // cause a slight jump when the user first drags a handle.  This might not be
-  // the correct fix.
-  this._$handles.eq(0).css({
-    left: Math.floor(
-        this._points.x1 * (handleContainerOuterWidth - handleOuterWidth)) + 1
-    ,top: Math.floor(
-        this._points.y1 * (handleContainerOuterHeight - handleOuterHeight)) + 1
-  });
-  this._$handles.eq(1).css({
-    left: Math.floor(
-        this._points.x2 * (handleContainerOuterWidth - handleOuterWidth)) + 1
-    ,top: Math.floor(
-        this._points.y2 * (handleContainerOuterHeight - handleOuterHeight)) + 1
-  });
-
-  this.redraw();
-};
-
-
-Bezierizer.prototype.redraw = function () {
+Bezierizer.prototype._redraw = function () {
   var points = this._points;
   var height = this._$canvas[0].height;
   var width = this._$canvas[0].width;
@@ -177,6 +140,46 @@ Bezierizer.prototype.redraw = function () {
   ctx.strokeStyle = handleStrokeColor;
   ctx.stroke();
   ctx.closePath();
+};
+
+
+/**
+ * Gets an object that contains normalized (between 0 and 1) x1, y1, x2 and y2 numbers.
+ * @return {Object}
+ */
+Bezierizer.prototype.getHandlePositions = function () {
+  return $.extend({}, this._points);
+};
+
+
+/**
+ * Sets the handle positions.  `points` does not require all of the points, just the ones you want to set.  `points` properties should represent the normalized values that the Bezier curve should have.
+ * @param {Object} points An object that may contain numbers representing any or all of x1, y1, x2, and y2.
+ */
+Bezierizer.prototype.setHandlePositions = function (points) {
+  $.extend(this._points, points);
+  var handleContainerOuterHeight = this._$handleContainer.outerHeight(true);
+  var handleContainerOuterWidth = this._$handleContainer.outerWidth(true);
+  var handleOuterWidth = this._$handles.outerWidth(true);
+  var handleOuterHeight = this._$handles.outerHeight(true);
+
+  // Adding 1 to each of these values seems to fix weird rounding errors that
+  // cause a slight jump when the user first drags a handle.  This might not be
+  // the correct fix.
+  this._$handles.eq(0).css({
+    left: Math.floor(
+        this._points.x1 * (handleContainerOuterWidth - handleOuterWidth)) + 1
+    ,top: Math.floor(
+        this._points.y1 * (handleContainerOuterHeight - handleOuterHeight)) + 1
+  });
+  this._$handles.eq(1).css({
+    left: Math.floor(
+        this._points.x2 * (handleContainerOuterWidth - handleOuterWidth)) + 1
+    ,top: Math.floor(
+        this._points.y2 * (handleContainerOuterHeight - handleOuterHeight)) + 1
+  });
+
+  this._redraw();
 };
 
 } (jQuery));
