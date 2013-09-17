@@ -1,6 +1,6 @@
 # Bezierizer
 
-__[API documentation](http://localhost:8080/dist/doc/src/bezierizer.core.js.html#Bezierizer)__
+__[API documentation](http://jeremyckahn.github.io/bezierizer/dist/doc/src/bezierizer.core.js.html#Bezierizer)__
 
 Sorry about the terrible name.  I pronounce it as "bez-ee-aye-i-zer."
 
