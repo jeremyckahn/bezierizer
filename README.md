@@ -1,5 +1,7 @@
 # Bezierizer
 
+__[API documentation](http://localhost:8080/dist/doc/src/bezierizer.core.js.html#Bezierizer)__
+
 Sorry about the terrible name.  I pronounce it as "bez-ee-aye-i-zer."
 
 This is a graphical widget intended to be used by
