@@ -53,7 +53,7 @@ module.exports = function(grunt) {
       },
       files: {
         src: [
-          'src/init.js'
+          'src/bezierizer.core.js'
         ],
         dest: 'dist/doc'
       }

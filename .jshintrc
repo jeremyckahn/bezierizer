@@ -1,6 +1,7 @@
 {
   "globals": {
     "$": true,
+    "jQuery": true,
     "HTML_TEMPLATE": true
   },
   "asi": false,
