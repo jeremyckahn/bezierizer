@@ -218,7 +218,7 @@ code {
   margin-right: 6px;
   font-size: 0.7em;
 }
-</style><script srr="http://cdnjs.cloudflare.com/ajax/libs/foundation/4.1.6/js/vendor/custom.modernizr.js"></script></head><body><div class="row"><div class="small-12 columns"><h1 class="page-title">Bezierizer<small> src/bezierizer.core.js</small></h1></div></div><div class="row"><div id="nav" class="large-3 columns"><div data-section="accordian" data-options="" class="section-container accordian"><div class="section active"><p data-section-title class="title"><a href="../../../dist/doc/src/bezierizer.core.js.html"><small>src/</small>bezierizer.core.js</a></p><div data-section-content class="content"><ul class="side-nav"><li><a href="../../../dist/doc/src/bezierizer.core.js.html#Bezierizer">Bezierizer</a></li><li><a href="../../../dist/doc/src/bezierizer.core.js.html#_redraw">_redraw</a></li><li><a href="../../../dist/doc/src/bezierizer.core.js.html#getHandlePositions">getHandlePositions</a></li><li><a href="../../../dist/doc/src/bezierizer.core.js.html#setHandlePositions">setHandlePositions</a></li></ul></div></div></div></div><div class="small-12 large-9 columns"><article class="comment"><header><h1 id="Bezierizer">Bezierizer</h1><h5 class="subheader"><div class="label radius ctx-type">function</div>Bezierizer()</h5></header><ul class="no-bullet tags"><li class="tag"><span class="type">@param: </span><span class="types">{Element}</span><span class="name">container</span><span class="description">The container element to insert the Bezierizer widget into.</span></li><li class="tag"><span class="type">@constructor: </span><span class="string"></span></li></ul><div data-section="accordian" data-options="one_up: false;" class="section-container code auto"><div class="section"><p data-section-title class="title"><a href="#">Description</a></p><div data-section-content class="content description"><p>Creates a Bezierizer widget and inserts it into the DOM.</p></div></div><div class="section"><p data-section-title class="title"><a href="#">Source</a></p><div data-section-content class="content"><pre><code class="language-javascript">function Bezierizer (container) {
+</style><script srr="http://cdnjs.cloudflare.com/ajax/libs/foundation/4.1.6/js/vendor/custom.modernizr.js"></script></head><body><div class="row"><div class="small-12 columns"><h1 class="page-title">Bezierizer<small> src/bezierizer.core.js</small></h1></div></div><div class="row"><div id="nav" class="large-3 columns"><div data-section="accordian" data-options="" class="section-container accordian"><div class="section active"><p data-section-title class="title"><a href="../../../dist/doc/src/bezierizer.core.js.html"><small>src/</small>bezierizer.core.js</a></p><div data-section-content class="content"><ul class="side-nav"><li><a href="../../../dist/doc/src/bezierizer.core.js.html#Bezierizer">Bezierizer</a></li><li><a href="../../../dist/doc/src/bezierizer.core.js.html#getHandlePositions">getHandlePositions</a></li><li><a href="../../../dist/doc/src/bezierizer.core.js.html#setHandlePositions">setHandlePositions</a></li></ul></div></div></div></div><div class="small-12 large-9 columns"><article class="comment"><header><h1 id="Bezierizer">Bezierizer</h1><h5 class="subheader"><div class="label radius ctx-type">function</div>Bezierizer()</h5></header><ul class="no-bullet tags"><li class="tag"><span class="type">@param: </span><span class="types">{Element}</span><span class="name">container</span><span class="description">The container element to insert the Bezierizer widget into.</span></li><li class="tag"><span class="type">@constructor: </span><span class="string"></span></li></ul><div data-section="accordian" data-options="one_up: false;" class="section-container code auto"><div class="section"><p data-section-title class="title"><a href="#">Description</a></p><div data-section-content class="content description"><p>Creates a Bezierizer widget and inserts it into the DOM.</p></div></div><div class="section"><p data-section-title class="title"><a href="#">Source</a></p><div data-section-content class="content"><pre><code class="language-javascript">function Bezierizer (container) {
   this.$el = $(container);
   this.$el.append($(HTML_TEMPLATE));
 
@@ -244,44 +244,7 @@ code {
   });
 
   this._initBindings();
-}</code></pre></div></div></div></article><article class="comment"><header><h1 id="_redraw">_redraw</h1><h5 class="subheader"><div class="label radius ctx-type">method</div>Bezierizer.prototype._redraw()</h5></header><ul class="no-bullet tags"></ul><div data-section="accordian" data-options="one_up: false;" class="section-container code auto"><div class="section"><p data-section-title class="title"><a href="#">Description</a></p><div data-section-content class="content description"><p>@private</p></div></div><div class="section"><p data-section-title class="title"><a href="#">Source</a></p><div data-section-content class="content"><pre><code class="language-javascript">Bezierizer.prototype._redraw = function () {
-  var points = this._points;
-  var height = this._$canvas[0].height;
-  var width = this._$canvas[0].width;
-  var x1 = points.x1 * width;
-  var y1 = points.y1 * height;
-  var x2 = points.x2 * width;
-  var y2 = points.y2 * height;
-
-  var ctx = this._ctx;
-  var handleStrokeColor = '#888';
-  var handleLineWidth = 2;
-  ctx.clearRect(0, 0, width, height);
-
-  ctx.beginPath();
-  ctx.lineWidth = handleLineWidth;
-  ctx.moveTo(x1, y1);
-  ctx.lineTo(0, 0);
-  ctx.strokeStyle = handleStrokeColor;
-  ctx.stroke();
-  ctx.closePath();
-
-  ctx.beginPath();
-  ctx.lineWidth = 4;
-  ctx.moveTo(0, 0);
-  ctx.bezierCurveTo(x1, y1, x2, y2, width, height);
-  ctx.strokeStyle = '#ccc';
-  ctx.stroke();
-  ctx.closePath();
-
-  ctx.beginPath();
-  ctx.lineWidth = handleLineWidth;
-  ctx.moveTo(width, height);
-  ctx.lineTo(x2, y2);
-  ctx.strokeStyle = handleStrokeColor;
-  ctx.stroke();
-  ctx.closePath();
-};</code></pre></div></div></div></article><article class="comment"><header><h1 id="getHandlePositions">getHandlePositions</h1><h5 class="subheader"><div class="label radius ctx-type">method</div>Bezierizer.prototype.getHandlePositions()</h5></header><ul class="no-bullet tags"><li class="tag"><span class="type">@return: </span><span class="types">{Object}</span><span class="description"></span></li></ul><div data-section="accordian" data-options="one_up: false;" class="section-container code auto"><div class="section"><p data-section-title class="title"><a href="#">Description</a></p><div data-section-content class="content description"><p>Gets an object that contains normalized (between 0 and 1) x1, y1, x2 and y2 numbers.</p></div></div><div class="section"><p data-section-title class="title"><a href="#">Source</a></p><div data-section-content class="content"><pre><code class="language-javascript">Bezierizer.prototype.getHandlePositions = function () {
+}</code></pre></div></div></div></article><article class="comment"><header><h1 id="getHandlePositions">getHandlePositions</h1><h5 class="subheader"><div class="label radius ctx-type">method</div>Bezierizer.prototype.getHandlePositions()</h5></header><ul class="no-bullet tags"><li class="tag"><span class="type">@return: </span><span class="types">{Object}</span><span class="description"></span></li></ul><div data-section="accordian" data-options="one_up: false;" class="section-container code auto"><div class="section"><p data-section-title class="title"><a href="#">Description</a></p><div data-section-content class="content description"><p>Gets an object that contains normalized (between 0 and 1) x1, y1, x2 and y2 numbers.</p></div></div><div class="section"><p data-section-title class="title"><a href="#">Source</a></p><div data-section-content class="content"><pre><code class="language-javascript">Bezierizer.prototype.getHandlePositions = function () {
   return $.extend({}, this._points);
 };</code></pre></div></div></div></article><article class="comment"><header><h1 id="setHandlePositions">setHandlePositions</h1><h5 class="subheader"><div class="label radius ctx-type">method</div>Bezierizer.prototype.setHandlePositions()</h5></header><ul class="no-bullet tags"><li class="tag"><span class="type">@param: </span><span class="types">{Object}</span><span class="name">points</span><span class="description">An object that may contain numbers representing any or all of x1, y1, x2, and y2.</span></li></ul><div data-section="accordian" data-options="one_up: false;" class="section-container code auto"><div class="section"><p data-section-title class="title"><a href="#">Description</a></p><div data-section-content class="content description"><p>Sets the handle positions.  <code>points</code> does not require all of the points, just the ones you want to set.  <code>points</code> properties should represent the normalized values that the Bezier curve should have.</p></div></div><div class="section"><p data-section-title class="title"><a href="#">Source</a></p><div data-section-content class="content"><pre><code class="language-javascript">Bezierizer.prototype.setHandlePositions = function (points) {
   $.extend(this._points, points);

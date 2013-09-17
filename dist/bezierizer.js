@@ -100,7 +100,7 @@ Bezierizer.prototype._updateInternalStateFromDOM = function () {
 };
 
 
-/**
+/*!
  * @private
  */
 Bezierizer.prototype._redraw = function () {
