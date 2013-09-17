@@ -3,11 +3,27 @@
 <head>
   <title>Bezierizer.  A graphical widget for defining a Bezier curve.</title>
   <link rel="stylesheet" href="dist/bezierizer.style.css">
+  <style>
+    .tween-test-container {
+      margin-top: 20px;
+    }
+    #tweenable {
+      background: #f00;
+      height: 200px;
+      margin-top: 20px;
+      width: 200px;
+    }
+  </style>
 </head>
 <body>
   <div id="bezierizer-test"></div>
+  <div class="tween-test-container">
+    <button id="test-curve">Test Bezier curve</button>
+    <div id="tweenable"></div>
+  </div>
   <script src="dist/jquery.js"></script>
   <script src="dist/jquery.dragon.js"></script>
+  <script src="dist/shifty.js"></script>
   <script src="src/bezierizer.template.js"></script>
   <script src="src/bezierizer.core.js"></script>
   <script>
@@ -15,7 +31,28 @@
     var bezierizer = new Bezierizer(bezierizerTestEl);
 
     bezierizer.$el.on('change', function () {
-      console.log(bezierizer.getHandlePositions());
+      var handlePositions = bezierizer.getHandlePositions();
+      Tweenable.setBezierFunction('testCurve',
+          handlePositions.x1, handlePositions.y1,
+          handlePositions.x2, handlePositions.y2);
+    }).trigger('change');
+
+    var tweenable = new Tweenable();
+    var $tweenableEl = $('#tweenable');
+
+    var $testCurveBtn = $('#test-curve');
+    $testCurveBtn.on('click', function () {
+      tweenable.stop();
+      $tweenableEl.css('transform', 'translateX(0px)');
+      tweenable.tween({
+        from:  { x: 0   }
+        ,to:   { x: 400 }
+        ,duration: 1500
+        ,easing: 'testCurve'
+        ,step: function (step) {
+          $tweenableEl.css('transform', 'translateX(' + step.x + 'px)');
+        }
+      });
     });
   </script>
 </body>

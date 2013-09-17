@@ -53,6 +53,7 @@ module.exports = function(grunt) {
         files: [
         {src: ['bower_components/jquery/jquery.js'], dest: 'dist/jquery.js'},
         {src: ['bower_components/jquery-dragon/src/jquery.dragon.js'], dest: 'dist/jquery.dragon.js'},
+        {src: ['bower_components/shifty/dist/shifty.js'], dest: 'dist/shifty.js'},
         {src: ['src/bezierizer.style.css'], dest: 'dist/bezierizer.style.css'}
         ]
       }
