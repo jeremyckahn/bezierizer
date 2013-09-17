@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-dox');
 
   var banner = [
@@ -47,6 +48,15 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc'
       }
     },
+    copy: {
+      dist: {
+        files: [
+        {src: ['bower_components/jquery/jquery.js'], dest: 'dist/jquery.js'},
+        {src: ['bower_components/jquery-dragon/src/jquery.dragon.js'], dest: 'dist/jquery.dragon.js'},
+        {src: ['src/bezierizer.style.css'], dest: 'dist/bezierizer.style.css'}
+        ]
+      }
+    },
     dox: {
       options: {
         title: 'Bezierizer'
@@ -63,6 +73,7 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', ['jshint', 'qunit']);
   grunt.registerTask('build', [
+      'copy:dist',
       'concat:standardTarget',
       'uglify:standardTarget',
       'dox']);

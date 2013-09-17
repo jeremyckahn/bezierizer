@@ -1,0 +1,34 @@
+.bezierizer-canvas-container {
+  height: 270px;
+  position: relative;
+  width: 270px;
+}
+
+  .bezierizer-canvas-container canvas {
+    background: #555;
+    height: 270px;
+    width: 270px;
+  }
+
+  .bezierizer-canvas-container .bezierizer-handle-container {
+    height: 290px;
+    left: -10px;
+    position: absolute;
+    top: -10px;
+    width: 290px;
+  }
+
+    .bezierizer-canvas-container .bezierizer-handle {
+      background: #999;
+      border-radius: 12px;
+      border: solid 4px #333;
+      height: 24px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 24px;
+    }
+
+    .bezierizer-canvas-container .bezierizer-handle:focus {
+      outline: none;
+    }
