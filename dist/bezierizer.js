@@ -72,6 +72,10 @@ function Bezierizer (container) {
 }
 
 
+// TODO: Set this up as an AMD module.
+window.Bezierizer = Bezierizer;
+
+
 /*!
  * @private
  */
