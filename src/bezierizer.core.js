@@ -7,8 +7,8 @@
  * @param {jQuery} $handle The handle to compute X for.
  */
 function getHandleX ($handleContainer, $handle) {
-  var handleX = parseInt($handle.css('left'), 10);
-  return handleX / ($handleContainer.outerWidth(true) - $handle.outerWidth(true));
+  return parseInt($handle.css('left'), 10) / (
+      $handleContainer.outerWidth(true) - $handle.outerWidth(true));
 }
 
 
@@ -18,8 +18,8 @@ function getHandleX ($handleContainer, $handle) {
  * @param {jQuery} $handle The handle to compute Y for.
  */
 function getHandleY ($handleContainer, $handle) {
-  var handleY = parseInt($handle.css('top'), 10);
-  return handleY / ($handleContainer.outerHeight(true)  - $handle.outerHeight(true));
+  return parseInt($handle.css('top'), 10) / (
+      $handleContainer.outerHeight(true)  - $handle.outerHeight(true));
 }
 
 
@@ -105,13 +105,20 @@ Bezierizer.prototype.setHandlePositions = function (points) {
   var handleOuterWidth = this._$handles.outerWidth(true);
   var handleOuterHeight = this._$handles.outerHeight(true);
 
+  // Adding 1 to each of these values seems to fix weird rounding errors that
+  // cause a slight jump when the user first drags a handle.  This might not be
+  // the correct fix.
   this._$handles.eq(0).css({
-    left: this._points.x1 * (handleContainerOuterWidth - handleOuterWidth)
-    ,top: this._points.y1 * (handleContainerOuterHeight - handleOuterHeight)
+    left: Math.floor(
+        this._points.x1 * (handleContainerOuterWidth - handleOuterWidth)) + 1
+    ,top: Math.floor(
+        this._points.y1 * (handleContainerOuterHeight - handleOuterHeight)) + 1
   });
   this._$handles.eq(1).css({
-    left: this._points.x2 * (handleContainerOuterWidth - handleOuterWidth)
-    ,top: this._points.y2 * (handleContainerOuterHeight - handleOuterHeight)
+    left: Math.floor(
+        this._points.x2 * (handleContainerOuterWidth - handleOuterWidth)) + 1
+    ,top: Math.floor(
+        this._points.y2 * (handleContainerOuterHeight - handleOuterHeight)) + 1
   });
 
   this.redraw();
