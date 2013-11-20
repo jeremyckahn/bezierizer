@@ -29,3 +29,6 @@ bezierizer.$el.on('change', function () {
 Dragging either handle of the widget triggers the `change` event on the
 `Bezierizer` instance's `$el` (which is the widget that is injected into the
 container element).
+
+Bezierizer can be loaded as an [AMD
+module](https://github.com/amdjs/amdjs-api/wiki/AMD).

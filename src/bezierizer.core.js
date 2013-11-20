@@ -57,8 +57,12 @@ function Bezierizer (container) {
 }
 
 
-// TODO: Set this up as an AMD module.
-window.Bezierizer = Bezierizer;
+if (typeof define === 'function' && define.amd) {
+  // AMD
+  define(function () { return Bezierizer; });
+} else if (typeof window.Bezierizer === 'undefined') {
+  window.Bezierizer = Bezierizer;
+}
 
 
 /*!

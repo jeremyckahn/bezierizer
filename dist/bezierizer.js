@@ -1,4 +1,4 @@
-/*! bezierizer - v0.0.2 - 2013-09-16 - https://github.com/jeremyckahn/bezierizer */
+/*! bezierizer - v0.0.3 - 2013-11-19 - https://github.com/jeremyckahn/bezierizer */
 ;(function ($) {
 
 var HTML_TEMPLATE = [
@@ -72,8 +72,12 @@ function Bezierizer (container) {
 }
 
 
-// TODO: Set this up as an AMD module.
-window.Bezierizer = Bezierizer;
+if (typeof define === 'function' && define.amd) {
+  // AMD
+  define(function () { return Bezierizer; });
+} else if (typeof window.Bezierizer === 'undefined') {
+  window.Bezierizer = Bezierizer;
+}
 
 
 /*!
