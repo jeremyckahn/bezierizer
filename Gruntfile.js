@@ -5,7 +5,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-dox');
+  grunt.loadNpmTasks('grunt-bump');
 
   var banner = [
         '/*! <%= pkg.name %> - v<%= pkg.version %> - ',
@@ -53,8 +55,7 @@ module.exports = function(grunt) {
         files: [
         {src: ['bower_components/jquery/jquery.js'], dest: 'dist/jquery.js'},
         {src: ['bower_components/jquery-dragon/src/jquery.dragon.js'], dest: 'dist/jquery.dragon.js'},
-        {src: ['bower_components/shifty/dist/shifty.js'], dest: 'dist/shifty.js'},
-        {src: ['src/bezierizer.style.css'], dest: 'dist/bezierizer.style.css'}
+        {src: ['bower_components/shifty/dist/shifty.js'], dest: 'dist/shifty.js'}
         ]
       }
     },
@@ -68,6 +69,24 @@ module.exports = function(grunt) {
         ],
         dest: 'dist/doc'
       }
+    },
+    compass: {
+      options: {
+        sassDir: 'src',
+        cssDir: 'dist',
+        environment: 'production'
+      },
+      dist: {}
+    },
+    bump: {
+      options: {
+        files: ['package.json', 'bower.json'],
+        commit: false,
+        createTag: false,
+        tagName: '%VERSION%',
+        tagMessage: 'Version %VERSION%',
+        push: false
+      }
     }
   });
 
@@ -77,6 +96,7 @@ module.exports = function(grunt) {
       'copy:dist',
       'concat:standardTarget',
       'uglify:standardTarget',
+      'compass:dist',
       'dox']);
 
 };
