@@ -1,4 +1,4 @@
-/*! bezierizer - v0.0.4 - 2014-06-10 - https://github.com/jeremyckahn/bezierizer */
+/*! bezierizer - v0.0.5 - 2014-12-06 - https://github.com/jeremyckahn/bezierizer */
 ;(function ($) {
 
 var HTML_TEMPLATE = [
@@ -13,6 +13,7 @@ var HTML_TEMPLATE = [
   ,'</div>'
 ].join('');
 
+/* global define: true */
 // PRIVATE HELPER FUNCTIONS
 //
 
@@ -74,7 +75,7 @@ function Bezierizer (container) {
 
 if (typeof define === 'function' && define.amd) {
   // AMD
-  define(function () { return Bezierizer; });
+  define(['jquery-dragon'], function () { return Bezierizer; });
 } else if (typeof window.Bezierizer === 'undefined') {
   window.Bezierizer = Bezierizer;
 }

@@ -1,3 +1,4 @@
+/* global define: true */
 // PRIVATE HELPER FUNCTIONS
 //
 
@@ -59,7 +60,7 @@ function Bezierizer (container) {
 
 if (typeof define === 'function' && define.amd) {
   // AMD
-  define(function () { return Bezierizer; });
+  define(['jquery-dragon'], function () { return Bezierizer; });
 } else if (typeof window.Bezierizer === 'undefined') {
   window.Bezierizer = Bezierizer;
 }

@@ -1,6 +1,6 @@
 {
   "name": "bezierizer",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://github.com/jeremyckahn/bezierizer",
   "author": "Jeremy Kahn <jeremyckahn@gmail.com>",
   "description": "A graphical widget for defining a Bezier curve",
@@ -8,7 +8,7 @@
   "dependencies": {
     "shifty": "0.12.0",
     "jquery": "~2.0.2",
-    "jquery-dragon": "~0.1.6"
+    "jquery-dragon": "~0.4.1"
   },
   "resolutions": {
     "jquery": "~2.0.2"
