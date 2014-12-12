@@ -1,4 +1,4 @@
-/*! bezierizer - v0.0.5 - 2014-12-06 - https://github.com/jeremyckahn/bezierizer */
+/*! bezierizer - v0.0.6 - 2014-12-11 - https://github.com/jeremyckahn/bezierizer */
 ;(function ($) {
 
 var HTML_TEMPLATE = [
@@ -121,6 +121,19 @@ Bezierizer.prototype._redraw = function () {
   var x2 = points.x2 * width;
   var y2 = points.y2 * height;
 
+  // This fixes a bizarre rendering issue in Chrome:
+  //
+  // CanvasRenderingContext2D#bezierCurveTo doesn't render when x1 and y1 are
+  // exactly 0.  To prevent this, force the rendered value to be just a bit
+  // more than 0.
+  if (x1 === 0) {
+    x1 = 1e-5;
+  }
+
+  if (y1 === 0) {
+    y1 = 1e-5;
+  }
+
   var ctx = this._ctx;
   var handleStrokeColor = '#888';
   var handleLineWidth = 2;
@@ -172,20 +185,17 @@ Bezierizer.prototype.setHandlePositions = function (points) {
   var handleOuterWidth = this._$handles.outerWidth(true);
   var handleOuterHeight = this._$handles.outerHeight(true);
 
-  // Adding 1 to each of these values seems to fix weird rounding errors that
-  // cause a slight jump when the user first drags a handle.  This might not be
-  // the correct fix.
   this._$handles.eq(0).css({
     left: Math.floor(
-        this._points.x1 * (handleContainerOuterWidth - handleOuterWidth)) + 1
+        this._points.x1 * (handleContainerOuterWidth - handleOuterWidth))
     ,top: Math.floor(
-        this._points.y1 * (handleContainerOuterHeight - handleOuterHeight)) + 1
+        this._points.y1 * (handleContainerOuterHeight - handleOuterHeight))
   });
   this._$handles.eq(1).css({
     left: Math.floor(
-        this._points.x2 * (handleContainerOuterWidth - handleOuterWidth)) + 1
+        this._points.x2 * (handleContainerOuterWidth - handleOuterWidth))
     ,top: Math.floor(
-        this._points.y2 * (handleContainerOuterHeight - handleOuterHeight)) + 1
+        this._points.y2 * (handleContainerOuterHeight - handleOuterHeight))
   });
 
   this._redraw();

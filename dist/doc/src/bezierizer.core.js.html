@@ -262,20 +262,17 @@ if (typeof define === 'function' &amp;&amp; define.amd) {
   var handleOuterWidth = this._$handles.outerWidth(true);
   var handleOuterHeight = this._$handles.outerHeight(true);
 
-  // Adding 1 to each of these values seems to fix weird rounding errors that
-  // cause a slight jump when the user first drags a handle.  This might not be
-  // the correct fix.
   this._$handles.eq(0).css({
     left: Math.floor(
-        this._points.x1 * (handleContainerOuterWidth - handleOuterWidth)) + 1
+        this._points.x1 * (handleContainerOuterWidth - handleOuterWidth))
     ,top: Math.floor(
-        this._points.y1 * (handleContainerOuterHeight - handleOuterHeight)) + 1
+        this._points.y1 * (handleContainerOuterHeight - handleOuterHeight))
   });
   this._$handles.eq(1).css({
     left: Math.floor(
-        this._points.x2 * (handleContainerOuterWidth - handleOuterWidth)) + 1
+        this._points.x2 * (handleContainerOuterWidth - handleOuterWidth))
     ,top: Math.floor(
-        this._points.y2 * (handleContainerOuterHeight - handleOuterHeight)) + 1
+        this._points.y2 * (handleContainerOuterHeight - handleOuterHeight))
   });
 
   this._redraw();
