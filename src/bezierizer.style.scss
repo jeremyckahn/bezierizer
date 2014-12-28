@@ -1,21 +1,25 @@
+$square-dimensions: 310px;
+$square-padding: 10px;
+$draggable-square-dimensions: $square-dimensions + ($square-padding * 2);
+
 .bezierizer-canvas-container {
-  height: 270px;
+  height: $square-dimensions;
   position: relative;
-  width: 270px;
+  width: $square-dimensions;
 }
 
   .bezierizer-canvas-container canvas {
     background: #555;
-    height: 270px;
-    width: 270px;
+    height: $square-dimensions;
+    width: $square-dimensions;
   }
 
   .bezierizer-canvas-container .bezierizer-handle-container {
-    height: 290px;
-    left: -10px;
+    height: $draggable-square-dimensions;
+    left: -$square-padding;
     position: absolute;
-    top: -10px;
-    width: 290px;
+    top: -$square-padding;
+    width: $draggable-square-dimensions;
   }
 
     .bezierizer-canvas-container .bezierizer-handle {
