@@ -1,4 +1,4 @@
-/*! bezierizer - v0.0.6 - 2014-12-11 - https://github.com/jeremyckahn/bezierizer */
+/*! bezierizer - v0.0.7 - 2014-12-28 - https://github.com/jeremyckahn/bezierizer */
 ;(function ($) {
 
 var HTML_TEMPLATE = [

@@ -19,14 +19,19 @@
   }
 
     .bezierizer-canvas-container .bezierizer-handle {
-      background: #999;
       border-radius: 12px;
       border: solid 4px #333;
       height: 24px;
       left: 0;
+      padding: 0;
       position: absolute;
       top: 0;
       width: 24px;
+
+      &,
+      &:active {
+        background: #999;
+      }
     }
 
     .bezierizer-canvas-container .bezierizer-handle:focus {
