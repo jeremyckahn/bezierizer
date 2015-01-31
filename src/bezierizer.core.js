@@ -58,14 +58,6 @@ function Bezierizer (container) {
 }
 
 
-if (typeof define === 'function' && define.amd) {
-  // AMD
-  define(['jquery-dragon'], function () { return Bezierizer; });
-} else if (typeof window.Bezierizer === 'undefined') {
-  window.Bezierizer = Bezierizer;
-}
-
-
 /*!
  * @private
  */
@@ -185,3 +177,5 @@ Bezierizer.prototype.setHandlePositions = function (points) {
 
   this._redraw();
 };
+
+return Bezierizer;

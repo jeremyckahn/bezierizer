@@ -1,5 +1,5 @@
-/*! bezierizer - v0.0.7 - 2014-12-28 - https://github.com/jeremyckahn/bezierizer */
-;(function ($) {
+/*! bezierizer - v0.1.0 - 2015-01-30 - https://github.com/jeremyckahn/bezierizer */
+define(['jquery', 'jquery-dragon'], function ($) {
 
 var HTML_TEMPLATE = [
   '<div class="bezierizer-container">'
@@ -70,14 +70,6 @@ function Bezierizer (container) {
   });
 
   this._initBindings();
-}
-
-
-if (typeof define === 'function' && define.amd) {
-  // AMD
-  define(['jquery-dragon'], function () { return Bezierizer; });
-} else if (typeof window.Bezierizer === 'undefined') {
-  window.Bezierizer = Bezierizer;
 }
 
 
@@ -201,4 +193,6 @@ Bezierizer.prototype.setHandlePositions = function (points) {
   this._redraw();
 };
 
-} (jQuery));
+return Bezierizer;
+
+});

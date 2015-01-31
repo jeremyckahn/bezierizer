@@ -1,1 +1,1 @@
-;(function ($) {
+define(['jquery', 'jquery-dragon'], function ($) {
